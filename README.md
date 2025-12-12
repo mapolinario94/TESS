@@ -2,7 +2,7 @@
 
 This repository is the official implementation of TESS, a scalable temporally and spatially local learning rule for spiking neural networks (SNNs), and replicates the experimental results obtained on the CIFAR10, CIFAR100, IBM DVS Gesture, and CIFAR10-DVS datasets. Its primary purpose is to aid in understanding the methodology and reproduce essential results. This work has been accepted for publication in Proceedings of the International Joint Conference on Neural Networks (IJCNN) 2025.
 
-[[ArXiv Paper]](https://arxiv.org/abs/2502.01837)
+[[ArXiv Paper]](https://arxiv.org/abs/2502.01837) [[IJCNN Paper]](https://doi.org/10.1109/IJCNN64981.2025.11227652)
 
 ## Abstract
 The demand for low-power inference and training of deep neural networks (DNNs) on edge devices has intensified the need for algorithms that are both scalable and energy-efficient. While spiking neural networks (SNNs) allow for efficient inference by processing complex spatio-temporal dynamics in an event-driven fashion, training them on resource-constrained devices remains challenging due to the high computational and memory demands of conventional error backpropagation (BP)-based approaches. In this work, we draw inspiration from biological mechanisms such as eligibility traces, spike-timing-dependent plasticity, and neural activity synchronization to introduce TESS, a temporally and spatially local learning rule for training SNNs. Our approach addresses both temporal and spatial credit assignments by relying solely on locally available signals within each neuron, thereby allowing computational and memory overheads to scale linearly with the number of neurons, independently of the number of time steps. Despite relying on local mechanisms, we demonstrate performance comparable to the backpropagation through time (BPTT) algorithm, within $\sim1.4$ accuracy points on challenging computer vision scenarios relevant at the edge, such as the IBM DVS Gesture dataset, CIFAR10-DVS, and temporal versions of CIFAR10, and CIFAR100. Being able to produce comparable performance to BPTT while keeping low time and memory complexity, TESS enables efficient and scalable on-device learning at the edge.
@@ -34,13 +34,12 @@ To ensure reproducibility, we have provided a bash script (`./script.sh`) with t
 If you use this code in your research, please cite our paper:
 
 ```bibtex
-@misc{apolinario2025tessscalabletemporallyspatially,
-      title={TESS: A Scalable Temporally and Spatially Local Learning Rule for Spiking Neural Networks}, 
-      author={Marco Paul E. Apolinario and Kaushik Roy and Charlotte Frenkel},
-      year={2025},
-      eprint={2502.01837},
-      archivePrefix={arXiv},
-      primaryClass={cs.NE},
-      url={https://arxiv.org/abs/2502.01837}, 
-}
+@INPROCEEDINGS{11227652,
+  author={Apolinario, Marco P. E. and Roy, Kaushik and Frenkel, Charlotte},
+  booktitle={2025 International Joint Conference on Neural Networks (IJCNN)}, 
+  title={TESS: A Scalable Temporally and Spatially Local Learning Rule for Spiking Neural Networks}, 
+  year={2025},
+  pages={1-9},
+  doi={10.1109/IJCNN64981.2025.11227652}}
+
 ```
