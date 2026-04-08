@@ -211,11 +211,17 @@ def do_epoch(args, do_training: bool, model, device, loader, optimizer, loss_fct
             pred = 0
             for t in range(args.n_steps):
                 input = data[t] if data.size(0) > 1 else data[0]
-                output = model(input, target=None if (data.size(0) - t) <= args.delay_ls else target)
+                if args.training_mode == "tess":
+                    # Full spatiotemporal local learning signal
+                    output = model(input, target=target) 
+                elif args.training_mode == "s-tllr":
+                    # Spatial-only local learning (more robust baseline)
+                    output = model(input, target=None)
+                else:
+                    raise NameError("=== ERROR: training mode " + str(args.training_mode) + " not supported")
                 pred += output.detach()
-                if (data.size(0) - t) <= args.delay_ls:
-                    loss = loss_fct(output, label)
-                    loss.backward()
+                loss = loss_fct(output, label)
+                loss.backward()
             optimizer.step()
             if hasattr(model, "optimizer_step"):
                 model.optimizer_step()

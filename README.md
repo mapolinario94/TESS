@@ -1,6 +1,6 @@
 # TESS: A Scalable Temporally and Spatially Local Learning Rule for Spiking Neural Networks
 
-This repository is the official implementation of TESS, a scalable temporally and spatially local learning rule for spiking neural networks (SNNs), and replicates the experimental results obtained on the CIFAR10, CIFAR100, IBM DVS Gesture, and CIFAR10-DVS datasets. Its primary purpose is to aid in understanding the methodology and reproduce essential results. This work has been accepted for publication in Proceedings of the International Joint Conference on Neural Networks (IJCNN) 2025.
+This repository contains the reference implementation for TESS, a scalable temporally and spatially local learning rule for spiking neural networks (SNNs). This work has been accepted for publication in Proceedings of the International Joint Conference on Neural Networks (IJCNN) 2025.
 
 [[ArXiv Paper]](https://arxiv.org/abs/2502.01837) [[IJCNN Paper]](https://doi.org/10.1109/IJCNN64981.2025.11227652)
 
@@ -11,8 +11,17 @@ The demand for low-power inference and training of deep neural networks (DNNs) o
 <img src = "./images/TESS_diagram.png" width="400">
 </p>
 <p align = "center">
-Figure 1: Overview of TESS. The diagram illustrates an SNN model unrolled in time, where $u^{(l)}[t]$ denotes the membrane potential of neurons in the $l$-th layer at time step $t$, and $o^{(l)}[t]$ represents the corresponding output spikes. Signals involved in weight update computation are highlighted: red represents the eligibility trace based on causal relationships between inputs and outputs, blue represents the eligibility trace for non-causal relationships, and green represents the local learning signal $m^{(l)}[t]$ used to modulate the eligibility traces. The local learning signal is generated independently for each layer through a learning signal generation (LSG) process. The fixed binary matrix $B^{(l)}$ used in the LSG process features columns corresponding to square wave functions. While, $f(\cdot)$ is a softmax function, and $t^*[t]$ represent the labels..
+Figure 1: Overview of TESS.
 </p>
+
+## ⚠️ Implementation & Reproducibility Note
+This repository was recently updated to clearly distinguish between the TESS (Full) and S-TLLR (Baseline) modes.
+
+- S-TLLR Mode: Use `--training-mode s-tllr`. This is a temporal local learning rule baseline.
+
+- TESS Mode: Use `--training-mode tess`. This enables the full spatiotemporal local learning rule.
+
+Note on TESS Convergence: As noted in the paper, TESS is highly sensitive to hyperparameter configurations (normalization, LR balancing, etc.). The current implementation serves as a reference for the logic; users may need to perform further hyperparameter tuning to achieve high performance across different environments.
 
 ## How to Use
 
@@ -25,9 +34,6 @@ Figure 1: Overview of TESS. The diagram illustrates an SNN model unrolled in tim
 
     A description of each parameter is provided in `main.py`.
 
-## Reproducing Results in the Paper
-
-To ensure reproducibility, we have provided a bash script (`./script.sh`) with the commands used to obtain the results reported in the paper.
 
 ## Citation
 

@@ -45,10 +45,8 @@ def main():
                         help='Seed for reproducibility. Default 0, which is doesnt set any seed')
     parser.add_argument('--pretrained-model', type=str, default=None,
                         help='Path for the pretrained model')
-    parser.add_argument('--training-mode', type=str, default='tess', choices=["tess", "bptt"],
-                        help='Training mode.')
-    parser.add_argument('--delay-ls', type=int, default=5,
-                        help='Number of time steps for which the learning signal is available (T - T_l).')
+    parser.add_argument('--training-mode', type=str, default='tess', choices=["tess", "s-tllr", "bptt"],
+                    help='Training mode. Note: "tess" requires specific hyperparameter tuning for convergence.')
     parser.add_argument('--scheduler', type=int, default=0,
                         help='Learning rate decay time.')
     parser.add_argument('--print-freq', type=int, default=200,
